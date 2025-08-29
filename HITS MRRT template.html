@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Liverpool HITS – Structured Reporting (GCS 13–15)</title>
+<style>
+  :root{
+    --bg:#0b1220;--panel:#111a2b;--muted:#a8b3c7;--text:#eaf0ff;--accent:#5cc8ff;
+    --good:#2ecc71;--warn:#ffc107;--bad:#ff6b6b;--line:#1f2a44
+  }
+  html,body{height:100%}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;background:linear-gradient(180deg,#08101d 0%, #0e1a2f 60%, #0b1220 100%);color:var(--text)}
+  .wrap{max-width:980px;margin:32px auto;padding:0 16px}
+  h1{margin:0 0 6px;font-size:1.35rem;font-weight:800;letter-spacing:.2px}
+  .sub{margin:0 0 18px;color:var(--muted)}
+  .grid{display:grid;gap:14px}
+  @media (min-width:780px){.grid{grid-template-columns:repeat(3,1fr)}}
+  fieldset{border:1px solid var(--line);border-radius:16px;padding:10px 10px 6px;background:var(--panel)}
+  legend{color:#9ad3ff;padding:0 6px;font-weight:700}
+  label.opt{display:flex;align-items:flex-start;gap:.6rem;margin:.35rem 0;padding:.35rem .55rem;border-radius:10px}
+  label.opt:hover{background:#0f1c33}
+  .pts{margin-left:auto;color:var(--muted);font-variant-numeric:tabular-nums}
+  .footer-card{grid-column:1/-1;border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:14px}
+  .summary{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:4px 0 8px}
+  .pill{border-radius:999px;padding:6px 10px;border:1px solid #243352;background:#0c1730}
+  .pill.good{border-color:#244b37;background:#0d2117;color:#caffdf}
+  .pill.warn{border-color:#4b431f;background:#221d0d;color:#ffe9a8}
+  .pill.bad{border-color:#4b262b;background:#221112;color:#ffd3d3}
+  .btns{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}
+  button{background:var(--accent);color:#001326;border:0;border-radius:12px;padding:10px 14px;font-weight:700;cursor:pointer}
+  button.secondary{background:#1b2a49;color:var(--text);border:1px solid #2b3b61}
+  textarea{width:100%;min-height:140px;border-radius:12px;border:1px solid #2b3b61;background:#0b152b;color:var(--text);padding:10px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  small.helper{color:var(--muted)}
+  a.mini{color:#9ad3ff;text-decoration:underline dotted}
+  .note{color:var(--muted);font-size:.92rem;margin-top:10px;line-height:1.35}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Liverpool Head Injury Tomography Score (HITS) – Calculator & Structured Report</h1>
+  <p class="sub">For mild TBI (GCS 13–15). Structured reporting by choosing one option in each section; the total and recommendation update automatically. Copy and paste into radiology report.</p>
+
+  <div class="grid">
+    <!-- Extra-axial haemorrhage -->
+    <fieldset id="extraaxial"><legend>Extra-axial haemorrhage</legend>
+      <label class="opt"><input type="radio" name="extraaxial" value="0" checked> No extra-axial haemorrhage <span class="pts">0</span></label>
+      <label class="opt"><input type="radio" name="extraaxial" value="1" data-code-radlex="RID4706" data-code-snomed="95453001"> Tentorial / parafalcine subdural <span class="pts">1</span></label>
+      <label class="opt"><input type="radio" name="extraaxial" value="1" data-code-snomed="16916421000119100"> Subdural hygroma (post-traumatic) <span class="pts">1</span></label>
+      <label class="opt"><input type="radio" name="extraaxial" value="3" data-code-radlex="RID4706" data-code-snomed="35486000"> Any other subdural haematoma <span class="pts">3</span></label>
+      <label class="opt"><input type="radio" name="extraaxial" value="3" data-code-radlex="RID4708" data-code-snomed="428268007"> Extradural (epidural) haematoma <span class="pts">3</span></label>
+    </fieldset>
+
+    <!-- Subarachnoid haemorrhage -->
+    <fieldset id="sah"><legend>Subarachnoid haemorrhage</legend>
+      <label class="opt"><input type="radio" name="sah" value="0" checked> No SAH <span class="pts">0</span></label>
+      <label class="opt"><input type="radio" name="sah" value="1" data-code-radlex="RID4710" data-code-snomed="21454007"> Peripheral SAH only <span class="pts">1</span></label>
+      <label class="opt"><input type="radio" name="sah" value="2" data-code-snomed="274100004"> Intraventricular haemorrhage <span class="pts">2</span></label>
+      <label class="opt"><input type="radio" name="sah" value="3" data-code-radlex="RID4710" data-code-snomed="21454007"> Blood around Circle of Willis / Sylvian fissures <span class="pts">3</span></label>
+      <label class="opt"><input type="radio" name="sah" value="3" data-code-radlex="RID4710" data-code-snomed="21454007"> Blood in basal cisterns <span class="pts">3</span></label>
+    </fieldset>
+
+    <!-- Parenchymal contusion -->
+    <fieldset id="contusion"><legend>Parenchymal contusion</legend>
+      <label class="opt"><input type="radio" name="contusion" value="0" checked> No contusion <span class="pts">0</span></label>
+      <label class="opt"><input type="radio" name="contusion" value="1" data-code-snomed="90768003"> Single contusion &lt; 1 cm <span class="pts">1</span></label>
+      <label class="opt"><input type="radio" name="contusion" value="2" data-code-snomed="90768003"> ≤3 contusions all &lt; 1 cm <span class="pts">2</span></label>
+      <label class="opt"><input type="radio" name="contusion" value="2" data-code-snomed="90768003"> ≥1 contusion ≥ 1 cm <span class="pts">2</span></label>
+      <label class="opt"><input type="radio" name="contusion" value="3" data-code-snomed="90768003"> ≥4 contusions (any size) <span class="pts">3</span></label>
+      <label class="opt"><input type="radio" name="contusion" value="3" data-code-snomed="90768003"> Any single contusion &gt; 2 cm <span class="pts">3</span></label>
+    </fieldset>
+
+    <!-- Skull fracture / intracranial air -->
+    <fieldset id="fracture"><legend>Skull fracture / intracranial air</legend>
+      <label class="opt"><input type="radio" name="fracture" value="0" checked> No fracture <span class="pts">0</span></label>
+      <label class="opt"><input type="radio" name="fracture" value="1" data-code-snomed="445493000"> Undisplaced (closed) skull vault fracture <span class="pts">1</span></label>
+      <label class="opt"><input type="radio" name="fracture" value="3" data-code-snomed="95850008"> Depressed / comminuted / compound fracture <span class="pts">3</span></label>
+      <label class="opt"><input type="radio" name="fracture" value="3" data-code-snomed="262550002"> Penetrating injury / retained foreign body <span class="pts">3</span></label>
+      <label class="opt"><input type="radio" name="fracture" value="3" data-code-snomed="71642004" data-code-snomed-alt="14415006"> Basilar skull fracture or pneumocephalus <span class="pts">3</span></label>
+    </fieldset>
+
+    <!-- Summary & Output -->
+    <div class="footer-card">
+      <h3 style="margin:.2rem 0 .6rem">Summary</h3>
+      <div class="summary">
+        <div id="totalPill" class="pill"><strong>HITS Total: <span id="sum">0</span></strong></div>
+        <div id="recPill" class="pill good">Recommendation: <span id="recText">Local management per guidance</span></div>
+      </div>
+
+      <div class="btns">
+        <button id="copyBtn">Copy report text</button>
+        <button id="resetBtn" class="secondary" type="button">Reset form</button>
+        <button id="toggleDetail" class="secondary" type="button">Show selections</button>
+      </div>
+
+      <textarea id="reportBox" readonly placeholder="Report text will appear here for copy/paste…"></textarea>
+
+      <div class="note">
+        <strong>Disclaimer:</strong> The HITS score was derived and validated by Gillespie et&nbsp;al. (2020) in a mild-TBI referral cohort (GCS&nbsp;13–15). They reported
+        sensitivity ≈99% and specificity ≈52% for surgically significant TBI (AUC&nbsp;0.79; 95% CI 0.76–0.82). See
+        <a class="mini" href="https://doi.org/10.1080/02688697.2019.1710825" target="_blank" rel="noreferrer">Br&nbsp;J&nbsp;Neurosurg 2020</a>.
+        This tool reproduces their structured reporting logic for clinical documentation and local risk stratification.
+        <br><br>
+        © 2025 William Stephen Bolton. All rights reserved. Unauthorised copying, modification, distribution, or sublicensing is prohibited.
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const groups = ["extraaxial","sah","contusion","fracture"];
+  const sumEl      = document.getElementById('sum');
+  const totalPill  = document.getElementById('totalPill');
+  const recPill    = document.getElementById('recPill');
+  const recTextEl  = document.getElementById('recText');
+  const reportBox  = document.getElementById('reportBox');
+  const copyBtn    = document.getElementById('copyBtn');
+  const resetBtn   = document.getElementById('resetBtn');
+  const toggleBtn  = document.getElementById('toggleDetail');
+
+  let showDetail = false;
+
+  function get(name){
+    const el = document.querySelector(`input[name="${name}"]:checked`);
+    const label = el ? el.parentElement.textContent.replace(/\s+\d+$/,'').trim() : '(none)';
+    // collect SNOMED codes (and any alt)
+    const codes = el ? [el.getAttribute('data-code-snomed'), el.getAttribute('data-code-snomed-alt')].filter(Boolean) : [];
+    const radlex = el ? el.getAttribute('data-code-radlex') : null;
+    if (radlex) codes.push(`RadLex:${radlex}`);
+    return { val: el ? Number(el.value) : 0, label, codes };
+  }
+
+  function classify(total){
+    if (total >= 3) return { text: "Surgically significant — refer neurosurgery on-call", tone: "bad"  };
+    if (total === 2) return { text: "Abnormal — admit locally; repeat CT in ~24 h; follow head-injury guidance", tone: "warn" };
+    if (total === 1) return { text: "Abnormal — admit locally for neurological observations", tone: "warn" };
+    return { text: "Local management per guidance (no neurosurgical opinion required)", tone: "good" };
+  }
+
+  function toneClass(el, tone){
+    el.classList.remove("good","warn","bad");
+    el.classList.add(tone === "bad" ? "bad" : tone === "warn" ? "warn" : "good");
+  }
+
+  function buildLines(vals){
+    const names = ["Extra-axial haemorrhage","Subarachnoid haemorrhage","Parenchymal contusion","Skull fracture / intracranial air"];
+    return vals.map((v,i) => {
+      const codeStr = showDetail && v.codes.length ? ` [Codes: ${v.codes.join(', ')}]` : "";
+      return `• ${names[i]}: ${v.label}${codeStr}`;
+    });
+  }
+
+  function update(){
+    const vals  = groups.map(get);
+    const total = vals.reduce((a,b)=>a + b.val, 0);
+
+    sumEl.textContent = total;
+    const rec = classify(total);
+    recTextEl.textContent = rec.text;
+
+    toneClass(totalPill, total >= 3 ? "bad" : total > 0 ? "warn" : "good");
+    toneClass(recPill,   rec.tone);
+
+    const lines = [
+      "HITS structured report (GCS 13–15)",
+      `Total = ${total}`,
+      ...(showDetail ? ["Components:", ...buildLines(vals)] : []),
+      `Recommendation: ${rec.text}.`
+    ];
+    reportBox.value = lines.join("\n");
+
+    toggleBtn.textContent = showDetail ? "Hide selections" : "Show selections";
+  }
+
+  document.querySelectorAll('input[type="radio"]').forEach(i => i.addEventListener('change', update));
+
+  if (resetBtn){
+    resetBtn.addEventListener('click', () => {
+      document.querySelectorAll('fieldset input[type="radio"]').forEach(r => {
+        r.checked = (r.value === "0");
+      });
+      update();
+    });
+  }
+
+  if (copyBtn){
+    copyBtn.addEventListener('click', async () => {
+      try{
+        await navigator.clipboard.writeText(reportBox.value);
+        copyBtn.textContent = "Copied!";
+        setTimeout(()=>copyBtn.textContent="Copy report text",1200);
+      }catch{
+        reportBox.select(); document.execCommand("copy");
+      }
+    });
+  }
+
+  if (toggleBtn){
+    toggleBtn.addEventListener('click', () => {
+      showDetail = !showDetail;
+      update();
+    });
+  }
+
+  update(); // initial render
+})();
+</script>
+</body>
+</html>
