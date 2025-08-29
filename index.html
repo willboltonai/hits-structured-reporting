@@ -133,9 +133,9 @@
 
   function classify(total){
     if (total >= 3) return { text: "Surgically significant — refer neurosurgery on-call for advice", tone: "bad"  };
-    if (total === 2) return { text: "Abnormal — admit locally; repeat CT if neurologically deteriorates; follow head-injury observation guidance; no need to refer to neurosurgery unless concerned", tone: "warn" };
-    if (total === 1) return { text: "Abnormal — admit locally; repeat CT if neurologically deteriorates; follow head-injury observation guidances; no need to refer to neurosurgery unless concerned", tone: "warn" };
-    return { text: "Local management per guidance (no neurosurgical opinion required)", tone: "good" };
+    if (total === 2) return { text: "Abnormal scan — admit locally; repeat CT if neurologically deteriorates; follow head-injury observation guidance; no need to refer to neurosurgery unless concerned", tone: "warn" };
+    if (total === 1) return { text: "Abnormal scan — if GCS 15 and not on antithrombotic agents, consider expedited discharge home; or else admit locally, repeat CT if neurologically deteriorates, follow head-injury observation guidances; no need to refer to neurosurgery unless concerned", tone: "warn" };
+    return { text: "Non-surgical scan - Local management per guidance (no neurosurgical opinion required)", tone: "good" };
   }
 
   function toneClass(el, tone){
